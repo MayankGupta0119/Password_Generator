@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1 class="heading">Password Generator</h1>
+      <div class="container">
+        <input readonly placeholder="Password" disp_pw class="display" />
+        <button copy_button class="copy_div">
+          <span copy_pw class="tooltip"></span>
+          <img
+            src="./assets/copied-icon.svg"
+            alt="copy_image"
+            width="80%"
+            height="70%"
+          />
+        </button>
+      </div>
+      <div class="input_container">
+        <!-- length display -->
+        <div class="len_container">
+          <p>Password Length</p>
+          <p pw_len>0</p>
+        </div>
+        <!-- slider  -->
+        <input type="range" min="1" max="30" class="slider" len_slider />
+        <!-- checkboxes -->
+        <div class="check">
+          <input type="checkbox" id="uppercase" />
+          <label for="uppercase">Include Uppercase Letter</label>
+        </div>
+        <div class="check">
+          <input type="checkbox" id="lowercase" />
+          <label for="lowercase">Include lowercase Letter</label>
+        </div>
+        <div class="check">
+          <input type="checkbox" id="nubmers" />
+          <label for="nubmers">Include nubmers</label>
+        </div>
+        <div class="check">
+          <input type="checkbox" id="Symbols" />
+          <label for="Symbols">Include Symbols</label>
+        </div>
+        <!-- strength section div -->
+        <div class="strength">
+          <p>Strength</p>
+          <div class="circle" indicator></div>
+        </div>
+        <!-- generator password button -->
+        <button gen_pw class="gen_button">Generator Password</button>
+      </div>
+    </div>
+  </body>
+  <script src="index.js"></script>
+</html>
