@@ -103,14 +103,12 @@ async function copyContent() {
   setTimeout(() => {
     copymsg.classList.remove("active");
   }, 2000);
-  // 2s baad copied will get invisible.
 }
 
 inputSlider.addEventListener("input", (e) => {
   passwordlen = e.target.value;
   handleSlider();
   console.log("slider working");
-  //slider ko slide krne se pw length display change hoga
 });
 
 copybtn.addEventListener("click", () => {
@@ -118,12 +116,6 @@ copybtn.addEventListener("click", () => {
     copyContent();
   }
 });
-//esme agr pw jo display me show ho raha hai, agr wo non-empty hai to
-// clipboard me copy hojayega on clicking on copybutton
-
-//now before applying the event listner on generate button
-// we need to count how many checkboxes were ticked, if none of the checkbox is ticked, then it should not
-//generate any password, therefore we need to apply eventlistner on all checkboxes to count how many of them are ticked.
 function countCheckBoxes() {
   checkCount = 0;
   allcheckbox.forEach((checkbox) => {
@@ -135,18 +127,10 @@ function countCheckBoxes() {
     handleSlider();
   }
   console.log("pw checked");
-  // there can be a case where all 4 boxes are checked and the length is set to one, then at that case we will explicitly change the password length equal to number
-  //of checkboxes that are checked. And to implement it on both the slider and the password length display we will call slidehandler().
 }
 allcheckbox.forEach((checkbox) => {
   checkbox.addEventListener("change", countCheckBoxes);
 });
-// yaha ye ho raha hai ki, kisi bhi checkbox ko tick krne pe, countCheckBox fn call hoga
-// fir sare checkboxes ko check krenge and total kitne checked hai wo count krenge.
-//if we unchecked any box, then again we will count how many boxes are checked.
-// will count as many times when any box is checked or unchecked.
-// yaha ek ek krke individual checkboxes per bhi eventlistner lga skte thai, but loop se easily hojyega.
-
 //shuffle password as needed by genbtn event listner
 function shufflePassword(array) {
   //fisher yates mehtod --> this algorithm is used for shuffling
@@ -172,16 +156,6 @@ genbtn.addEventListener("click", () => {
   }
   //making password string empty, so that previously generated password can be removed and new one can be created
   password = "";
-  // now if we put letters according to the checkboxes, then its predictable that after upercase letter there will be a lower case
-  // then a number then a symbol
-  // therefore to add letters we need to randomly call each function to add letters
-
-  // first adding complusory addition, i.e. those letters which has been ticked in the checkboxes, they should be there atleast one time
-  // therefore will create a funciton array, and will put those function inside the array which are ticked
-  //then first add call those function which are inside the fucntion array one by one,
-  // after adding all complusory addition, then will fill the remaining places by creating a randomly generated number and calling the index of the function array,
-  // so that any function will be taken at random
-
   // creating function array
   let funarr = [];
   if (upper.checked) {
@@ -196,7 +170,6 @@ genbtn.addEventListener("click", () => {
   if (symbol.checked) {
     funarr.push(generateSymbol);
   }
-  console.log("function array me push hogye");
   //compulsory addition
   for (let i = 0; i < funarr.length; i++) {
     password += funarr[i]();
@@ -206,10 +179,8 @@ genbtn.addEventListener("click", () => {
     let randind = getRandomInt(0, funarr.length); // will generate reandom indexes for funarr
     password += funarr[randind]();
   }
-
   // shuffling the password
   password = shufflePassword(Array.from(password));
   passwordDisplay.value = password;
   calcStrength();
-  console.log("generated");
 });
